@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body>div {
+            width: 300px;
+            height: 300px;
+            background-color: aquamarine;
+        }
+
+        #main{
+            overflow-y:auto ;
+        }
+
+        #main>div>div {
+            border: 1px black solid;
+        }
+        
+        /* 用户的评论大盒子 */
+        #userComment>div{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            min-height: 15px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+    <div id="main">
+        <input type="text">
+        <button>发送</button>
+        <div id="userComment">
+
+        </div>
+    </div>
+    <script>
+        const bx = document.querySelector("#main"); //获取盒子
+        const bt = document.querySelector("div#main>button"); //获取按钮
+        const bxuser = bx.querySelector("div")
+        bt.addEventListener("click", function () {
+                    let userIn = document.querySelector("input").value; //获取输入框的文本
+                    if (userIn) {
+                        bxuser.innerHTML = bxuser.innerHTML + "<div>" +"<div>"+ userIn +"<\/div>"+"<div>"+new Date().toLocaleTimeString("zh-CN",{timeStyle:"short"})+"<\/div>" +"<\/div>"; //innerHTML赋值时接收字符串型，加法字符串拼串
+                        document.querySelector("input").value = '' //清空输入框内容
+                    }//空串不能添加评论
+                    else
+                    alert("评论不能为空!")
+                    }); //给按钮添加单击事件
+    </script>
+</body>
+
+</html>
